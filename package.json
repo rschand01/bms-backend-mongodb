@@ -60,6 +60,7 @@
     "nodemailer": "^6.9.14",
     "rate-limit-redis": "^4.2.0",
     "redis": "^4.6.15",
+    "slugify": "^1.6.6",
     "winston": "^3.13.1"
   },
   "devDependencies": {
