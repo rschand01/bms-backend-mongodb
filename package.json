@@ -11,7 +11,7 @@
     "serve": "nodemon ./server.mjs",
     "pregithub-publish": "npx eslint .",
     "github-publish": "git push -u origin development",
-    "lint": "pnpm lint ."
+    "lint": "pnpm eslint ."
   },
   "type": "module",
   "repository": {
