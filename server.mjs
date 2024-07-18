@@ -1,9 +1,12 @@
 import { config as dotenvConfig } from "dotenv";
 import express from "express";
 import { logger } from "./src/config/logger.config.mjs";
+import { mongoDataBase } from "./src/database/mongodb.database.mjs";
 
 const app = express();
+
 dotenvConfig();
+mongoDataBase();
 
 try {
   app.use(express.json());
