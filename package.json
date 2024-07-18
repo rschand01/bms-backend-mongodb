@@ -9,8 +9,8 @@
     "start": "node ./server.mjs",
     "preserve": "npx eslint .",
     "serve": "nodemon ./server.mjs",
-    "prepublish": "npx eslint .",
-    "publish": "git push -u origin development",
+    "pregithub-publish": "npx eslint .",
+    "github-publish": "git push -u origin development",
     "lint": "pnpm lint ."
   },
   "type": "module",
