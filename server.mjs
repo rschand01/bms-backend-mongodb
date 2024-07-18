@@ -7,6 +7,7 @@ import { logger } from "./src/config/logger.config.mjs";
 import lusca from "lusca";
 import { mongoDataBase } from "./src/database/mongodb.database.mjs";
 import { rateLimiter } from "./src/middleware/rate.limit.middleware.mjs";
+import { router } from "./src/router/router.mjs";
 import session from "express-session";
 
 const app = express();
@@ -64,6 +65,7 @@ try {
   app.use(lusca(luscaOptions));
 
   app.use(rateLimiter);
+  app.use("/", router);
 
   app.listen(process.env.EXPRESS_PORT, () => {
     logger.log({
