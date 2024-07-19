@@ -43,6 +43,7 @@ export const emailSenderUtility = async (
       "template",
       emailTemplateName
     );
+
     const html = pug.renderFile(emailTemplatePath, {
       firstName,
       lastName,
