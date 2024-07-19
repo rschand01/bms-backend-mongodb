@@ -1,5 +1,6 @@
 import { createTransport } from "nodemailer";
 import { config as dotenvConfig } from "dotenv";
+import { logger } from "../config/logger.config.mjs";
 import path from "path";
 import pug from "pug";
 
@@ -25,7 +26,7 @@ const transporter = createTransport({
  * @param {string} link The link that the user needs to click.
  * @param {string} userEmail Email address of the user.
  * @param {string} emailSubject Email subject.
- * @returns boolean given the info.response.includes("OK")
+ * @returns boolean given the info.accepted.length > 0
  */
 export const emailSenderUtility = async (
   emailTemplateName,
@@ -35,16 +36,34 @@ export const emailSenderUtility = async (
   userEmail,
   emailSubject
 ) => {
-  const __dirname = path.resolve("src");
-  const emailTemplatePath = path.join(__dirname, "template", emailTemplateName);
-  const html = pug.renderFile(emailTemplatePath, { firstName, lastName, link });
+  try {
+    const __dirname = path.resolve("src");
+    const emailTemplatePath = path.join(
+      __dirname,
+      "template",
+      emailTemplateName
+    );
+    const html = pug.renderFile(emailTemplatePath, {
+      firstName,
+      lastName,
+      link,
+    });
 
-  const info = await transporter.sendMail({
-    from: `"${process.env.COMPANY_NAME}" <${process.env.COMPANY_EMAIL}>`,
-    to: userEmail,
-    subject: emailSubject,
-    html: html,
-  });
+    const info = await transporter.sendMail({
+      from: `"${process.env.COMPANY_NAME}" <${process.env.COMPANY_EMAIL}>`,
+      to: userEmail,
+      subject: emailSubject,
+      html: html,
+    });
 
-  return info.response.includes("OK");
+    return info.accepted.length > 0;
+  } catch (error) {
+    logger.log({
+      level: "error",
+      message: error.message,
+      additional: error.stack,
+    });
+
+    return false;
+  }
 };
