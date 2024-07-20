@@ -1,4 +1,5 @@
 import { ONE_DAY_IN_SECONDS } from "./src/constant/constant.mjs";
+import RedisStore from "connect-redis";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { csrfMiddleware } from "./src/middleware/csrf.middleware.mjs";
@@ -8,6 +9,7 @@ import { logger } from "./src/config/logger.config.mjs";
 import lusca from "lusca";
 import { mongoDataBase } from "./src/database/mongodb.database.mjs";
 import { rateLimiter } from "./src/middleware/rate.limit.middleware.mjs";
+import { redisClient } from "./src/store/redis.client.store.mjs";
 import { router } from "./src/router/router.mjs";
 import session from "express-session";
 
@@ -15,6 +17,11 @@ const app = express();
 
 dotenvConfig();
 mongoDataBase();
+
+const redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "bms:",
+});
 
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
@@ -31,9 +38,10 @@ const cookieOptions = {
 };
 
 const sessionOptions = {
+  store: redisStore,
   secret: process.env.EXPRESS_SESSION_SECRET,
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: cookieOptions,
 };
 
