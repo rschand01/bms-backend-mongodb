@@ -5,6 +5,7 @@ import { signInController } from "../controller/signin.controller.mjs";
 import { signUpController } from "../controller/signup.controller.mjs";
 import { tokenMiddleware } from "../middleware/token.middleware.mjs";
 import { userProfileUpdateController } from "../controller/user.profile.update.controller.mjs";
+import { userProfileViewController } from "../controller/user.profile.view.controller.mjs";
 import { verifyJwtMiddleware } from "../middleware/verify.jwt.middleware.mjs";
 
 export const router = express.Router();
@@ -19,6 +20,7 @@ router.put(
   accountVerificationController
 );
 
+router.get("/user/profile", verifyJwtMiddleware, userProfileViewController);
 router.put(
   "/user/profile-update",
   verifyJwtMiddleware,
