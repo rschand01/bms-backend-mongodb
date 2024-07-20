@@ -1,5 +1,7 @@
+import { accessTokenSchema } from "./access.token.schema.mjs";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import { refreshTokenSchema } from "./refresh.token.schema.mjs";
 import slugify from "slugify";
 
 export const signUpSchema = new mongoose.Schema(
@@ -10,6 +12,8 @@ export const signUpSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     userIsVerified: { type: Boolean, default: false },
+    accessToken: [accessTokenSchema],
+    refreshToken: [refreshTokenSchema],
   },
   { timestamps: true }
 );
