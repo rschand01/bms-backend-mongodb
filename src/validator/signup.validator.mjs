@@ -1,8 +1,6 @@
 import Joi from "joi";
 
 export const signUpValidator = Joi.object({
-  _csrf: Joi.string().required(),
-
   firstName: Joi.string()
     .min(2)
     .max(20)
