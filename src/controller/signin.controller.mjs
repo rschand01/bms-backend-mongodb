@@ -69,7 +69,7 @@ export const signInController = async (request, response) => {
       .header("Authorization", accessToken)
       .cookie("refreshToken", refreshToken)
       .json({
-        responseData: `Sign in successful Welcome ${existingUser.firstName} ${existingUser.lastName}`,
+        responseData: `Sign in successful. Welcome ${existingUser.firstName} ${existingUser.lastName}`,
       });
   } catch (error) {
     catchErrorUtility(error, response);
