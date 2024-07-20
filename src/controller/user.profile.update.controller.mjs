@@ -18,6 +18,25 @@ export const userProfileUpdateController = async (request, response) => {
       return response.status(401).json({ responseData: "Unauthorized!" });
     }
 
+    if (
+      (value.email !== undefined && value.email !== null) ||
+      (value.userName !== undefined && value.userName !== null)
+    ) {
+      const existingUsers = await UserModel.exists({
+        $or: [
+          { email: { $eq: value.email } },
+          { userName: { $eq: value.userName } },
+        ],
+      });
+
+      if (existingUsers) {
+        return response.status(409).json({
+          responseData:
+            "Invalid email or username. Please enter a unique email and or username!",
+        });
+      }
+    }
+
     const updateFields = {};
     const allowedFields = [
       "firstName",
