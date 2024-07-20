@@ -38,11 +38,9 @@ export const signInController = async (request, response) => {
       expiresIn: "1h",
     });
 
-    const refreshToken = jwt.sign(
-      { userData: userData },
-      process.env.JWT_SECRET_KEY,
-      { expiresIn: "1d" }
-    );
+    const refreshToken = jwt.sign({ userData }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1d",
+    });
 
     const existingAccessToken = existingUser.accessToken.some(
       (token) => token.accessToken === accessToken
