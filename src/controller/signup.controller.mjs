@@ -1,8 +1,8 @@
 import { ACCOUNT_VERIFICATION_EMAIL_TEMPLATE } from "../constant/constant.mjs";
 import { UserModel } from "../model/model.mjs";
+import { catchErrorUtility } from "../utility/catch.error.utility.mjs";
 import { emailSenderUtility } from "../utility/email.sender.utility.mjs";
 import jwt from "jsonwebtoken";
-import { logger } from "../config/logger.config.mjs";
 import { signUpValidator } from "../validator/signup.validator.mjs";
 
 export const signUpController = async (request, response) => {
@@ -60,14 +60,6 @@ export const signUpController = async (request, response) => {
       .status(400)
       .json({ responseData: "Account cannot be created!" });
   } catch (error) {
-    logger.log({
-      level: "error",
-      message: error.message,
-      additional: error.stack,
-    });
-
-    return response
-      .status(500)
-      .json({ responseData: "Internal server error!" });
+    catchErrorUtility(error, response);
   }
 };
