@@ -10,7 +10,6 @@ import { mongoDataBase } from "./src/database/mongodb.database.mjs";
 import { rateLimiter } from "./src/middleware/rate.limit.middleware.mjs";
 import { router } from "./src/router/router.mjs";
 import session from "express-session";
-import { tokenMiddleware } from "./src/middleware/token.middleware.mjs";
 
 const app = express();
 
@@ -66,10 +65,8 @@ try {
   app.use(session(sessionOptions));
   app.use(lusca(luscaOptions));
 
-  app.use(rateLimiter);
   app.use(csrfMiddleware);
-  app.use(tokenMiddleware);
-
+  app.use(rateLimiter);
   app.use("/", router);
 
   app.listen(process.env.EXPRESS_PORT, () => {
