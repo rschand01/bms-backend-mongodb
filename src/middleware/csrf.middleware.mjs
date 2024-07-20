@@ -4,7 +4,7 @@ import { logger } from "../config/logger.config.mjs";
 export const csrfMiddleware = (request, response, next) => {
   const { error } = csrfValidator.validate(request.body);
 
-  if (error) {
+  if (error && request.method !== "GET") {
     return response.status(400).json({ responseData: error.message });
   }
 
