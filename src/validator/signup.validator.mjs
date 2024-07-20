@@ -35,4 +35,4 @@ export const signUpValidator = Joi.object({
     .required(),
 
   confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
-});
+}).unknown(true);
