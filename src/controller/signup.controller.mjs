@@ -31,7 +31,7 @@ export const signUpController = async (request, response) => {
       { expiresIn: "1d" }
     );
 
-    const accountVerificationLink = `${process.env.WEBSITE_URL}?avtoken=${accountVerificationToken}`;
+    const accountVerificationLink = `${process.env.WEBSITE_URL}?token=${accountVerificationToken}`;
 
     const emailIsSent = await emailSenderUtility(
       ACCOUNT_VERIFICATION_EMAIL_TEMPLATE,
