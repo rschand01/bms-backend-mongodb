@@ -1,7 +1,7 @@
 import { UserModel } from "../model/model.mjs";
 import bcrypt from "bcryptjs";
+import { catchErrorUtility } from "../utility/catch.error.utility.mjs";
 import jwt from "jsonwebtoken";
-import { logger } from "../config/logger.config.mjs";
 import { signInValidator } from "../validator/signin.validator.mjs";
 
 export const signInController = async (request, response) => {
@@ -72,14 +72,6 @@ export const signInController = async (request, response) => {
         responseData: `Sign in successful Welcome ${existingUser.firstName} ${existingUser.lastName}`,
       });
   } catch (error) {
-    logger.log({
-      level: "error",
-      message: error.message,
-      additional: error.stack,
-    });
-
-    return response
-      .status(500)
-      .json({ responseData: "Internal server error!" });
+    catchErrorUtility(error, response);
   }
 };
