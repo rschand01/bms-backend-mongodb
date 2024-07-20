@@ -1,6 +1,7 @@
 import { ONE_DAY_IN_SECONDS } from "./src/constant/constant.mjs";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { csrfMiddleware } from "./src/middleware/csrf.middleware.mjs";
 import { config as dotenvConfig } from "dotenv";
 import express from "express";
 import { logger } from "./src/config/logger.config.mjs";
@@ -9,6 +10,7 @@ import { mongoDataBase } from "./src/database/mongodb.database.mjs";
 import { rateLimiter } from "./src/middleware/rate.limit.middleware.mjs";
 import { router } from "./src/router/router.mjs";
 import session from "express-session";
+import { tokenMiddleware } from "./src/middleware/token.middleware.mjs";
 
 const app = express();
 
@@ -65,6 +67,9 @@ try {
   app.use(lusca(luscaOptions));
 
   app.use(rateLimiter);
+  app.use(csrfMiddleware);
+  app.use(tokenMiddleware);
+
   app.use("/", router);
 
   app.listen(process.env.EXPRESS_PORT, () => {
