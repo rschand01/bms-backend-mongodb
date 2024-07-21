@@ -4,6 +4,8 @@ import express from "express";
 import { signInController } from "../controller/signin.controller.mjs";
 import { signUpController } from "../controller/signup.controller.mjs";
 import { tokenMiddleware } from "../middleware/token.middleware.mjs";
+import { userPasswordResetController } from "../controller/user.password.reset.controller.mjs";
+import { userPasswordResetEmailController } from "../controller/user.password.reset.email.controller.mjs";
 import { userPasswordUpdateController } from "../controller/user.password.update.controller.mjs";
 import { userProfileUpdateController } from "../controller/user.profile.update.controller.mjs";
 import { userProfileViewController } from "../controller/user.profile.view.controller.mjs";
@@ -15,6 +17,7 @@ router.get("/csrf", csrfController);
 
 router.post("/auth/signup", signUpController);
 router.post("/auth/signin", signInController);
+router.post("/auth/password-reset-email", userPasswordResetEmailController);
 router.put(
   "/auth/account-verification",
   tokenMiddleware,
@@ -24,6 +27,11 @@ router.put(
   "/auth/password-update",
   verifyJwtMiddleware,
   userPasswordUpdateController
+);
+router.put(
+  "/auth/password-reset",
+  tokenMiddleware,
+  userPasswordResetController
 );
 
 router.get("/user/profile", verifyJwtMiddleware, userProfileViewController);
