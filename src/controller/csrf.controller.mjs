@@ -4,15 +4,9 @@ export const csrfController = (request, response) => {
   const token = request.csrfToken();
 
   try {
-    if (token === null || token === undefined) {
-      return response
-        .status(400)
-        .json({ responseData: "CSRF token cannot be null or undefined!" });
-    }
-
     if (!token) {
       return response
-        .status(404)
+        .status(400)
         .json({ responseData: "CSRF token not found!" });
     }
 
