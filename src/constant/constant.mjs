@@ -6,3 +6,5 @@ export const ONE_DAY_IN_SECONDS = 86400;
 export const TEN_MINUTES_IN_SECONDS = 600;
 export const ACCOUNT_VERIFICATION_EMAIL_TEMPLATE =
   "account.verification.email.template.pug";
+export const USER_PASSWORD_RESET_EMAIL_TEMPLATE =
+  "user.password.reset.email.template.pug";
