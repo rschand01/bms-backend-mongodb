@@ -26,9 +26,28 @@ export const userPasswordResetController = async (request, response) => {
       return response.status(401).json({ responseData: "Unauthorized!" });
     }
 
+    if (
+      existingUser.userPasswordResetBlacklistToken.some(
+        (jwtToken) => jwtToken.userPasswordResetBlacklistToken === token
+      )
+    ) {
+      return response.status(403).json({
+        responseData:
+          "Password reset token has already been used. Please request forgot password to reset your password!",
+      });
+    }
+
     const passwordHash = await bcrypt.hash(password, SALT);
 
-    await existingUser.updateOne({ password: passwordHash });
+    await existingUser.updateOne({
+      password: passwordHash,
+      $push: {
+        userPasswordResetBlacklistToken: {
+          userPasswordResetBlacklistToken: token,
+        },
+      },
+    });
+
     return response
       .status(200)
       .json({ responseData: "Password reset successful!" });
