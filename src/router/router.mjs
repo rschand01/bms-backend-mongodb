@@ -1,3 +1,4 @@
+import { accountDeletionController } from "../controller/account.deletion.controller.mjs";
 import { accountVerificationController } from "../controller/account.verification.controller.mjs";
 import { csrfController } from "../controller/csrf.controller.mjs";
 import express from "express";
@@ -19,6 +20,11 @@ router.get("/csrf", csrfController);
 router.post("/auth/signup", signUpController);
 router.post("/auth/signin", signInController);
 router.post("/auth/logout", verifyJwtMiddleware, userLogoutController);
+router.post(
+  "/auth/account-deletion",
+  verifyJwtMiddleware,
+  accountDeletionController
+);
 router.post("/auth/password-reset-email", userPasswordResetEmailController);
 router.put(
   "/auth/account-verification",
