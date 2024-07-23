@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import { refreshTokenSchema } from "./refresh.token.schema.mjs";
 import slugify from "slugify";
+import { userLogoutBlacklistTokenSchema } from "./user.logout.blacklist.token.schema.mjs";
 import { userPasswordResetBlacklistTokenSchema } from "./user.password.reset.blacklist.token.schema.mjs";
 
 export const signUpSchema = new mongoose.Schema(
@@ -21,6 +22,7 @@ export const signUpSchema = new mongoose.Schema(
     accessToken: [accessTokenSchema],
     refreshToken: [refreshTokenSchema],
     userPasswordResetBlacklistToken: [userPasswordResetBlacklistTokenSchema],
+    userLogoutBlacklistToken: [userLogoutBlacklistTokenSchema],
   },
   { timestamps: true }
 );
