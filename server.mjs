@@ -67,6 +67,7 @@ if (process.env.NODE_ENV !== "production") {
 
 try {
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
   app.use(cors(corsOptions));
   app.use(cookieParser(process.env.COOKIE_SESSION_SECRET, cookieOptions));
