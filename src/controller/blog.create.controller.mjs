@@ -1,6 +1,8 @@
 import { BlogModel, UserModel } from "../model/model.mjs";
 import { blogDataValidator } from "../validator/blog.data.validator.mjs";
 import { catchErrorUtility } from "../utility/catch.error.utility.mjs";
+import { fileUploadMiddleware } from "../middleware/file.upload.middleware.mjs";
+import multer from "multer";
 
 export const blogCreateController = async (request, response) => {
   const { error, value } = blogDataValidator.validate(request.body);
@@ -33,6 +35,8 @@ export const blogCreateController = async (request, response) => {
       });
     }
 
+    await fileUploadMiddleware(request, response, "blog-image");
+
     await BlogModel.create({
       userId: existingUser._id,
       blogTitle,
@@ -46,6 +50,10 @@ export const blogCreateController = async (request, response) => {
       responseData: `Blog ${blogTitle} has been successfully created!`,
     });
   } catch (error) {
+    if (error instanceof multer.MulterError) {
+      return response.status(400).json({ responseData: error.message });
+    }
+
     catchErrorUtility(error, response);
   }
 };
