@@ -12,7 +12,7 @@ export const userNameParamMiddleware = (request, response, next) => {
   const { userName } = request.params;
 
   try {
-    if (userData.userName !== userName) {
+    if (!userData.userName || userData.userName !== userName) {
       return response.status(404).json({ responseData: "User not found!" });
     }
 
