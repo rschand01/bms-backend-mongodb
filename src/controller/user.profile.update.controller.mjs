@@ -1,5 +1,7 @@
 import { UserModel } from "../model/model.mjs";
 import { catchErrorUtility } from "../utility/catch.error.utility.mjs";
+import { fileUploadMiddleware } from "../middleware/file.upload.middleware.mjs";
+import multer from "multer";
 import { userProfileUpdateValidator } from "../validator/user.profile.update.validator.mjs";
 
 export const userProfileUpdateController = async (request, response) => {
@@ -37,7 +39,7 @@ export const userProfileUpdateController = async (request, response) => {
       }
     }
 
-    const updateFields = {};
+    let updateFields = {};
     const allowedFields = [
       "firstName",
       "lastName",
@@ -55,6 +57,10 @@ export const userProfileUpdateController = async (request, response) => {
       }
     }
 
+    const profileImageFilename = `profile-image-${existingUser.userName}`;
+
+    await fileUploadMiddleware(request, response, profileImageFilename);
+
     if (Object.keys(updateFields).length === 0) {
       return response.status(403).json({
         responseData:
@@ -67,6 +73,10 @@ export const userProfileUpdateController = async (request, response) => {
       .status(200)
       .json({ responseData: "Account information update successful!" });
   } catch (error) {
+    if (error instanceof multer.MulterError) {
+      return response.status(400).json({ responseData: error.message });
+    }
+
     catchErrorUtility(error, response);
   }
 };
