@@ -20,34 +20,27 @@ export const blogCreateController = async (request, response) => {
       return response.status(401).json({ responseData: "Unauthorized!" });
     }
 
-    const existingUserBlog = await BlogModel.findOne({
-      _id: { $eq: existingUser._id },
+    const existingBlogs = await BlogModel.exists({
+      $and: [
+        { userId: { $eq: existingUser._id } },
+        { blogTitle: { $eq: blogTitle } },
+      ],
     });
 
-    if (
-      existingUserBlog &&
-      existingUserBlog.blogData &&
-      existingUserBlog.blogData.some((data) => data.blogTitle === blogTitle)
-    ) {
+    if (existingBlogs) {
       return response.status(409).json({
         responseData: `Blog with title ${blogTitle} already exists. Please choose a different blog title!`,
       });
     }
 
-    const blogData = {
+    await BlogModel.create({
+      userId: existingUser._id,
       blogTitle,
       blogSlug: blogTitle,
       blogContent,
       blogImage: blogImage ?? null,
       blogAuthor,
-    };
-
-    if (!existingUserBlog) {
-      await BlogModel.create({ _id: existingUser._id, blogData });
-    } else {
-      existingUserBlog.blogData.push(blogData);
-      await existingUserBlog.save();
-    }
+    });
 
     return response.status(201).json({
       responseData: `Blog ${blogTitle} has been successfully created!`,
