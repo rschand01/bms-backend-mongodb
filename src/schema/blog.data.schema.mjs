@@ -4,8 +4,8 @@ import slugify from "slugify";
 export const blogDataSchema = new mongoose.Schema(
   {
     userId: { type: String, ref: "User" },
-    blogTitle: { type: String, required: true, unique: true },
-    blogSlug: { type: String, required: true, unique: true },
+    blogTitle: { type: String, required: true },
+    blogSlug: { type: String, required: true },
     blogContent: { type: String, required: true },
     blogAuthor: { type: String, required: true },
     blogImage: { type: String, default: null },
