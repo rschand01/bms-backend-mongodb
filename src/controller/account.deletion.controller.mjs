@@ -43,6 +43,8 @@ export const accountDeletionController = async (request, response) => {
       });
 
       await Promise.all(deletionPromises);
+
+      // * Remove .session(session); if you are not using MongoDB as a Single-Node Replica Set
       await UserModel.deleteOne({ _id: { $eq: existingUser._id } }).session(
         session
       );
