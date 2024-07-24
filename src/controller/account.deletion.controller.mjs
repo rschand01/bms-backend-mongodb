@@ -28,23 +28,23 @@ export const accountDeletionController = async (request, response) => {
 
       const deletionPromises = collections.map(async (collection) => {
         if (collection.name !== "users") {
-          await database.collection(collection.name).bulkWrite([
+          await database.collection(collection.name).deleteMany(
             {
-              deleteMany: {
-                filter: {
+              $or: [
+                {
                   _id: { $eq: existingUser._id },
-                  userId: { $eq: existingUser._id },
                 },
-                session,
-              },
+                { userId: { $eq: existingUser._id } },
+              ],
             },
-          ]);
+            session
+          );
         }
       });
 
       await Promise.all(deletionPromises);
 
-      // * Remove .session(session); if you are not using MongoDB as a Single-Node Replica Set
+      // * Remove .session(session); if you are not using MongoDB as a Single-Node Replica Set.
       await UserModel.deleteOne({ _id: { $eq: existingUser._id } }).session(
         session
       );
