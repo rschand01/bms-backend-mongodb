@@ -13,10 +13,11 @@ export const blogDataValidator = Joi.object({
     .pattern(new RegExp("^[A-Z][a-z]*( [A-z][a-z]*)*$"))
     .required(),
 
-  blogImage: Joi.string(),
   blogAuthor: Joi.string()
     .min(2)
     .max(100)
     .pattern(new RegExp("^[A-Z][a-z]*( [A-Z][a-z]*)*$"))
     .required(),
+
+  blogImage: Joi.string(),
 }).unknown(true);
