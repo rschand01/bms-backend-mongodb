@@ -31,7 +31,10 @@ export const accountDeletionController = async (request, response) => {
           await database.collection(collection.name).bulkWrite([
             {
               deleteMany: {
-                filter: { _id: { $eq: existingUser._id } },
+                filter: {
+                  _id: { $eq: existingUser._id },
+                  userId: { $eq: existingUser._id },
+                },
                 session,
               },
             },
