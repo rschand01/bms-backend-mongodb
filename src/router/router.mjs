@@ -1,6 +1,7 @@
 import { accountDeletionController } from "../controller/account.deletion.controller.mjs";
 import { accountVerificationController } from "../controller/account.verification.controller.mjs";
 import { blogCreateController } from "../controller/blog.create.controller.mjs";
+import { blogUpdateController } from "../controller/blog.update.controller.mjs";
 import { csrfController } from "../controller/csrf.controller.mjs";
 import express from "express";
 import { signInController } from "../controller/signin.controller.mjs";
@@ -56,4 +57,10 @@ router.post(
   verifyJwtMiddleware,
   userNameParamMiddleware,
   blogCreateController
+);
+router.put(
+  "/:userName/blog/:blogSlug/update",
+  verifyJwtMiddleware,
+  userNameParamMiddleware,
+  blogUpdateController
 );
