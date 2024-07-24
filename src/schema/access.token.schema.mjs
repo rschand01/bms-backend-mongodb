@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const accessTokenSchema = new mongoose.Schema(
   {
-    accessToken: { type: String, required: true, unique: true },
+    accessToken: { type: String, required: true },
   },
   { timestamps: true }
 );
