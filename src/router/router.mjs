@@ -24,7 +24,7 @@ router.get("/csrf", csrfController);
 router.post("/auth/signup", signUpController);
 router.post("/auth/signin", signInController);
 router.post("/auth/logout", verifyJwtMiddleware, userLogoutController);
-router.post(
+router.delete(
   "/auth/account-deletion",
   verifyJwtMiddleware,
   accountDeletionController
