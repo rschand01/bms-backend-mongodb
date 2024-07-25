@@ -7,6 +7,7 @@ import { blogViewController } from "../controller/blog.view.controller.mjs";
 import { csrfController } from "../controller/csrf.controller.mjs";
 import express from "express";
 import { feedViewController } from "../controller/feed.view.controller.mjs";
+import { redisBlogCacheController } from "../controller/redis.blog.cache.controller.mjs";
 import { signInController } from "../controller/signin.controller.mjs";
 import { signUpController } from "../controller/signup.controller.mjs";
 import { tokenMiddleware } from "../middleware/token.middleware.mjs";
@@ -75,4 +76,10 @@ router.delete(
   verifyJwtMiddleware,
   userNameParamMiddleware,
   blogDeleteController
+);
+
+router.post(
+  "/invalidate/redis/cache/blog/keys",
+  verifyJwtMiddleware,
+  redisBlogCacheController
 );
