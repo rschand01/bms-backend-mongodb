@@ -1,0 +1,78 @@
+bms-backend-mongodb
+├── .env
+├── .env.example
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── eslint.config.mjs
+├── LICENSE
+├── package.json
+├── pnpm-lock.yaml
+├── PROJECT_STRUCTURE
+├── README.md
+├── server.mjs
+└── src
+    ├── config
+    │   ├── cookie.options.config.mjs
+    │   └── logger.config.mjs
+    ├── constant
+    │   └── constant.mjs
+    ├── controller
+    │   ├── account.deletion.controller.mjs
+    │   ├── account.verification.controller.mjs
+    │   ├── blog.create.controller.mjs
+    │   ├── blog.delete.controller.mjs
+    │   ├── blog.update.controller.mjs
+    │   ├── blog.view.controller.mjs
+    │   ├── csrf.controller.mjs
+    │   ├── feed.view.controller.mjs
+    │   ├── redis.blog.cache.controller.mjs
+    │   ├── signin.controller.mjs
+    │   ├── signup.controller.mjs
+    │   ├── user.logout.controller.mjs
+    │   ├── user.password.reset.controller.mjs
+    │   ├── user.password.reset.email.controller.mjs
+    │   ├── user.password.update.controller.mjs
+    │   ├── user.profile.update.controller.mjs
+    │   └── user.profile.view.controller.mjs
+    ├── database
+    │   └── mongodb.database.mjs
+    ├── middleware
+    │   ├── csrf.middleware.mjs
+    │   ├── file.upload.middleware.mjs
+    │   ├── rate.limit.middleware.mjs
+    │   ├── token.middleware.mjs
+    │   ├── username.param.middleware.mjs
+    │   └── verify.jwt.middleware.mjs
+    ├── model
+    │   └── model.mjs
+    ├── router
+    │   └── router.mjs
+    ├── schema
+    │   ├── access.token.schema.mjs
+    │   ├── blog.data.schema.mjs
+    │   ├── refresh.token.schema.mjs
+    │   ├── signup.schema.mjs
+    │   ├── user.logout.blacklist.token.schema.mjs
+    │   └── user.password.reset.blacklist.token.schema.mjs
+    ├── store
+    │   └── redis.client.store.mjs
+    ├── template
+    │   ├── account.verification.email.template.pug
+    │   └── user.password.reset.email.template.pug
+    ├── utility
+    │   ├── catch.error.utility.mjs
+    │   ├── email.sender.utility.mjs
+    │   ├── jwt.regeneration.utility.mjs
+    │   └── redis.keys.retrieval.utility.mjs
+    └── validator
+        ├── blog.data.update.validator.mjs
+        ├── blog.data.validator.mjs
+        ├── csrf.validator.mjs
+        ├── email.validator.mjs
+        ├── payload.validator.mjs
+        ├── signin.validator.mjs
+        ├── signup.validator.mjs
+        ├── token.validator.mjs
+        ├── user.password.reset.validator.mjs
+        ├── user.password.update.validator.mjs
+        └── user.profile.update.validator.mjs
