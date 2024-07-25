@@ -2,6 +2,7 @@ bms-backend-mongodb
 ├── .env
 ├── .env.example
 ├── .gitignore
+├── CODE_OF_CONDUCT.md
 ├── eslint.config.mjs
 ├── LICENSE
 ├── package.json
