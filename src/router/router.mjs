@@ -6,6 +6,7 @@ import { blogUpdateController } from "../controller/blog.update.controller.mjs";
 import { blogViewController } from "../controller/blog.view.controller.mjs";
 import { csrfController } from "../controller/csrf.controller.mjs";
 import express from "express";
+import { feedViewController } from "../controller/feed.view.controller.mjs";
 import { signInController } from "../controller/signin.controller.mjs";
 import { signUpController } from "../controller/signup.controller.mjs";
 import { tokenMiddleware } from "../middleware/token.middleware.mjs";
@@ -54,7 +55,9 @@ router.put(
   userProfileUpdateController
 );
 
+router.get("/blog/feeds", verifyJwtMiddleware, feedViewController);
 router.get("/blog/:blogSlug", verifyJwtMiddleware, blogViewController);
+
 router.post(
   "/:userName/blog/create",
   verifyJwtMiddleware,
