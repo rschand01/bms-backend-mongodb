@@ -1,4 +1,4 @@
-# Blog Management System (BMS) - Backend
+# Blog Management System (BMS) - Backend (MongoDB)
 
 This project is a fully-featured Blog Management System (BMS) backend built with **Node.js, Express, MongoDB, and Redis.** It includes user authentication, blog creation and management, profile updates, and caching using Redis.
 
