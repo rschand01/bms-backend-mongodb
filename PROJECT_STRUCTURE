@@ -1,6 +1,10 @@
 bms-backend-mongodb
 ├── .env
 ├── .env.example
+├── .github
+│   └── workflows
+│       ├── codeql.yml
+│       └── eslint.yml
 ├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── eslint.config.mjs
