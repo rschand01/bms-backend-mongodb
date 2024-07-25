@@ -45,7 +45,7 @@ export const blogViewController = async (request, response) => {
 
     if (!existingBlogs || existingBlogs.length === 0) {
       return response.status(404).json({
-        responseData: `Blogs not found!`,
+        responseData: "Blogs not found!",
       });
     }
 
