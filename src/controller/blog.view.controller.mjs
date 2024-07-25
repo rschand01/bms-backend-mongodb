@@ -1,3 +1,8 @@
+import {
+  BLOGS_PER_PAGE,
+  CURRENT_PAGE,
+  TWENTY_MINUTES_IN_SECONDS,
+} from "../constant/constant.mjs";
 import { BlogModel, UserModel } from "../model/model.mjs";
 import { catchErrorUtility } from "../utility/catch.error.utility.mjs";
 import { payloadValidator } from "../validator/payload.validator.mjs";
@@ -22,8 +27,8 @@ export const blogViewController = async (request, response) => {
       return response.status(401).json({ responseData: "Unauthorized!" });
     }
 
-    const currentPage = parseInt(request.query.page) || 1;
-    const blogsPerPage = parseInt(request.query.perPage) || 50;
+    const currentPage = parseInt(request.query.page) || CURRENT_PAGE;
+    const blogsPerPage = parseInt(request.query.perPage) || BLOGS_PER_PAGE;
     const blogsToBeSkipped = (currentPage - 1) * blogsPerPage;
 
     const cacheKey = `${existingUser.userName}_${blogSlug}_${currentPage}_${blogsPerPage}`;
@@ -50,7 +55,7 @@ export const blogViewController = async (request, response) => {
     }
 
     await redisClient.hSet(cacheKey, { blogs: JSON.stringify(existingBlogs) });
-    await redisClient.expire(cacheKey, 1200);
+    await redisClient.expire(cacheKey, TWENTY_MINUTES_IN_SECONDS);
 
     return response.status(200).json({ responseData: existingBlogs });
   } catch (error) {
