@@ -6,6 +6,8 @@ bms-backend-mongodb
 ├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
+├── PROJECT_STRUCTURE
+├── README.md
 ├── server.mjs
 └── src
     ├── config
