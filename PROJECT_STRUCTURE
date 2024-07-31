@@ -7,12 +7,12 @@ bms-backend-mongodb
 │       └── eslint.yml
 ├── .gitignore
 ├── CODE_OF_CONDUCT.md
-├── eslint.config.mjs
 ├── LICENSE
-├── package.json
-├── pnpm-lock.yaml
 ├── PROJECT_STRUCTURE
 ├── README.md
+├── eslint.config.mjs
+├── package.json
+├── pnpm-lock.yaml
 ├── server.mjs
 └── src
     ├── config
@@ -37,7 +37,8 @@ bms-backend-mongodb
     │   ├── user.password.reset.email.controller.mjs
     │   ├── user.password.update.controller.mjs
     │   ├── user.profile.update.controller.mjs
-    │   └── user.profile.view.controller.mjs
+    │   ├── user.profile.view.controller.mjs
+    │   └── user.social.controller.mjs
     ├── database
     │   └── mongodb.database.mjs
     ├── middleware
@@ -56,8 +57,10 @@ bms-backend-mongodb
     │   ├── blog.data.schema.mjs
     │   ├── refresh.token.schema.mjs
     │   ├── signup.schema.mjs
+    │   ├── user.connection.schema.mjs
     │   ├── user.logout.blacklist.token.schema.mjs
-    │   └── user.password.reset.blacklist.token.schema.mjs
+    │   ├── user.password.reset.blacklist.token.schema.mjs
+    │   └── user.social.schema.mjs
     ├── store
     │   └── redis.client.store.mjs
     ├── template
@@ -67,7 +70,8 @@ bms-backend-mongodb
     │   ├── catch.error.utility.mjs
     │   ├── email.sender.utility.mjs
     │   ├── jwt.regeneration.utility.mjs
-    │   └── redis.keys.retrieval.utility.mjs
+    │   ├── redis.keys.retrieval.utility.mjs
+    │   └── update.user.connection.utility.mjs
     └── validator
         ├── blog.data.update.validator.mjs
         ├── blog.data.validator.mjs
@@ -79,4 +83,5 @@ bms-backend-mongodb
         ├── token.validator.mjs
         ├── user.password.reset.validator.mjs
         ├── user.password.update.validator.mjs
-        └── user.profile.update.validator.mjs
+        ├── user.profile.update.validator.mjs
+        └── user.social.validator.mjs
