@@ -18,6 +18,7 @@ import { userPasswordResetEmailController } from "../controller/user.password.re
 import { userPasswordUpdateController } from "../controller/user.password.update.controller.mjs";
 import { userProfileUpdateController } from "../controller/user.profile.update.controller.mjs";
 import { userProfileViewController } from "../controller/user.profile.view.controller.mjs";
+import { userSocialController } from "../controller/user.social.controller.mjs";
 import { verifyJwtMiddleware } from "../middleware/verify.jwt.middleware.mjs";
 
 export const router = express.Router();
@@ -55,6 +56,7 @@ router.put(
   verifyJwtMiddleware,
   userProfileUpdateController
 );
+router.put("/user/social/operation", verifyJwtMiddleware, userSocialController);
 
 router.get("/blog/feeds", verifyJwtMiddleware, feedViewController);
 router.get("/blog/:blogSlug", verifyJwtMiddleware, blogViewController);
