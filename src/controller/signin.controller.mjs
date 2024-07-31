@@ -28,6 +28,7 @@ export const signInController = async (request, response) => {
     }
 
     const userData = {
+      _id: existingUser._id,
       firstName: existingUser.firstName,
       lastName: existingUser.lastName,
       userName: existingUser.userName,
