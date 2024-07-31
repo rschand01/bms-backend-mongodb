@@ -106,7 +106,17 @@ This project is a fully-featured Blog Management System (BMS) backend built with
    JWT_SECRET_KEY=SECRET_KEY
    ```
 
-4. **Start the server:**
+4. **Setup Docker**
+
+   ```bash
+   sudo docker pull mongo
+   ```
+
+   ```bash
+   sudo docker run -d --name mongodb -p 27017:27017 mongo
+   ```
+
+5. **Start the server:**
 
    ```bash
    pnpm start
