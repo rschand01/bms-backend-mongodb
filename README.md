@@ -22,6 +22,7 @@ This project is a fully-featured Blog Management System (BMS) backend built with
 - Profile view and update
 - Blog creation, update, deletion, and view
 - Feed view for blogs
+- User Connections (Follow/Unfollow)
 - CSRF protection
 - Redis caching for blog data
 - Rate limiting and file upload middleware
@@ -34,9 +35,8 @@ This project is a fully-featured Blog Management System (BMS) backend built with
 ## Upcoming Features
 
 1. Frontend Development (Website). Using **Next.JS & Tailwind CSS**
-2. Followers and following functionality
-3. Likes, comments, and shares for blogs
-4. Enhanced blog search functionality
+2. Likes, comments, and shares for blogs
+3. Enhanced blog search functionality
 
 ## Installation
 
