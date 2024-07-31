@@ -184,6 +184,10 @@ Alternatively you can find the `PROJECT_STRUCTURE` file in the root directory of
 - **GET** /user/profile - View user profile (requires JWT)
 - **PUT** /user/profile-update - Update user profile (requires JWT)
 
+### User Connection
+
+- **PUT** /user/social/operation - Create and or Update User Connections (Follow/Unfollow) (requires JWT)
+
 ### Blog
 
 - **GET** /blog/feeds - View blog feeds (requires JWT)
