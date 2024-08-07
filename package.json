@@ -16,7 +16,7 @@
   "type": "module",
   "repository": {
     "directory": ".",
-    "type": "public",
+    "type": "git",
     "url": "https://github.com/rschand-dev/bms-backend-mongodb"
   },
   "homepage": "https://github.com/rschand-dev/bms-backend-mongodb",
