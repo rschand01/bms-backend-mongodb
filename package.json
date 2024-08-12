@@ -1,7 +1,7 @@
 {
   "name": "bms-backend-mongodb",
   "version": "1.0.0",
-  "description": "A fully featured Blog Management System developed using Node, Express JavaScript & MongoDB. Follows Monolithic Architecture! 🪷",
+  "description": "A fully featured Blog Management System developed using Node, Express JavaScript & MongoDB. Follows Monolithic Architecture. 🪷",
   "main": "./server.mjs",
   "private": "false",
   "scripts": {
